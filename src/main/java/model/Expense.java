@@ -7,7 +7,13 @@ public class Expense {
     private double amount;
     private Category category;
     private LocalDateTime date;
-    public Expense(int id, String title, double amount, Category category, LocalDateTime date){
+    public Expense(String title, double amount, Category category, LocalDateTime date){
+        this.title = title;
+        this.amount = amount;
+        this.category = category;
+        this.date = date;
+    }
+    public Expense(int id,String title, double amount, Category category, LocalDateTime date){
         this.id = id;
         this.title = title;
         this.amount = amount;
