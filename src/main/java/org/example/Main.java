@@ -6,6 +6,7 @@ import validator.ExpenseValidator;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -159,9 +160,29 @@ public class Main {
         }
     }
     static void getMonthlyTotals(){
+    try{
+        Map<String, Double> expenses = expenseDAO.getMonthlyTotals();
+        if(expenses.isEmpty()){
+            System.out.println("Not found");
+            return;
+        }
+        for(Map.Entry<String, Double>entry: expenses.entrySet()){
+            System.out.println("Month: " + entry.getKey() + "->" + entry.getValue());
+        }
 
-
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
     }
-
-
+    }
+    static void deleteExpense(Scanner scanner){
+        getAllExpenses();
+        System.out.println("Enter id to delete: ");
+        int userChoice = scanner.nextInt();
+        scanner.nextLine();
+        try{
+            expenseDAO.deleteExpense(userChoice);
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+        }
+    }
 }
