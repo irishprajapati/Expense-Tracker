@@ -18,12 +18,12 @@ public class Main {
     public static void main(String[] args) {
         while(true){
             System.out.println("\n --- Expense Tracker---");
-            System.out.println("1. Add Expense: ");
-            System.out.println("2. View All Expense: ");
-            System.out.println("3. View By Category: ");
-            System.out.println("4. Monthly Costs: ");
-            System.out.println("5. Delete Expense: ");
-            System.out.println("6. Exit: ");
+            System.out.println("1, Add Expense: ");
+            System.out.println("2, View All Expense: ");
+            System.out.println("3, View By Category: ");
+            System.out.println("4, Monthly Costs: ");
+            System.out.println("5, Delete Expense: ");
+            System.out.println("6, Exit: ");
             System.out.println("Choose: ");
 
             //reading choice of user:
@@ -31,11 +31,11 @@ public class Main {
             scanner.nextLine();
 
             switch(choice){
-                case 1 -> addExpense(scanner);
+                case 1 -> addExpense();
                 case 2 -> getAllExpenses();
-                case 3 -> getExpenseByCategory(scanner);
+                case 3 -> getExpenseByCategory();
                 case 4 -> getMonthlyTotals();
-                case 5-> deleteExpense(scanner);
+                case 5-> deleteExpense();
                 case 6-> {
                     System.out.println("Exiting..");
                     return;
@@ -44,7 +44,7 @@ public class Main {
             }
             }
         }
-    static void addExpense(Scanner scanner){
+    static void addExpense(){
         System.out.println("Enter title: ");
         String title = scanner.nextLine();
 
@@ -54,12 +54,12 @@ public class Main {
 
         //category menu with switch
         System.out.println("Select category: ");
-        System.out.println("1. FOOD");
-        System.out.println("2. TRANSPORT");
-        System.out.println("3. RENT");
-        System.out.println("4. ENTERTAINMENT");
-        System.out.println("5. HEALTH CARE");
-        System.out.println("6. OTHER");
+        System.out.println("1, FOOD");
+        System.out.println("2, TRANSPORT");
+        System.out.println("3, RENT");
+        System.out.println("4, ENTERTAINMENT");
+        System.out.println("5, HEALTH CARE");
+        System.out.println("6, OTHER");
         System.out.println("Choose: ");
         int categoryChoice = scanner.nextInt();
         scanner.nextLine();
@@ -105,25 +105,27 @@ public class Main {
             }
             System.out.println("Available expenses: ");
             for(Expense expense: expenses){
-                System.out.println("ID: " + expense.getId());
-                System.out.println("Title: " + expense.getTitle());
-                System.out.println("Amount: " + expense.getAmount());
-                System.out.println("Category: " + expense.getCategory());
-                System.out.println("Date: " + expense.getDate());
+                System.out.println(
+                        expense.getId() + " | " +
+                                expense.getTitle() + " | " +
+                                "Rs." + expense.getAmount() + " | " +
+                                expense.getCategory() + " | " +
+                                expense.getDate().toLocalDate()
+                );
 
             }
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
         }
     }
-    static void getExpenseByCategory(Scanner scanner){
+    static void getExpenseByCategory(){
         System.out.println("Choose Category: ");
-        System.out.println("1. FOOD");
-        System.out.println("2. TRANSPORT");
-        System.out.println("3. RENT");
-        System.out.println("4. ENTERTAINMENT");
+        System.out.println("1, FOOD");
+        System.out.println("2, TRANSPORT");
+        System.out.println("3, RENT");
+        System.out.println("4, ENTERTAINMENT");
         System.out.println("5, HEALTHCARE");
-        System.out.println("6. OTHER");
+        System.out.println("6, OTHER");
         System.out.println("CHOOSE: ");
         int categoryChoice = scanner.nextInt();
         scanner.nextLine();
@@ -149,11 +151,13 @@ public class Main {
             }
             System.out.println("Expenses by Category: ");
             for(Expense expense: expenses){
-                System.out.println("ID: " + expense.getId());
-                System.out.println("Title: " + expense.getTitle());
-                System.out.println("Amount: " + expense.getAmount());
-                System.out.println("Category: " + expense.getCategory());
-                System.out.println("Date: " + expense.getDate());
+                System.out.println(
+                        expense.getId() + " | " +
+                                expense.getTitle() + " | " +
+                                "Rs." + expense.getAmount() + " | " +
+                                expense.getCategory() + " | " +
+                                expense.getDate().toLocalDate()
+                );
             }
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
@@ -171,10 +175,10 @@ public class Main {
         }
 
     } catch (SQLException e) {
-        throw new RuntimeException(e);
+        System.out.println("Database error: " + e.getMessage());
     }
     }
-    static void deleteExpense(Scanner scanner){
+    static void deleteExpense(){
         getAllExpenses();
         System.out.println("Enter id to delete: ");
         int userChoice = scanner.nextInt();
