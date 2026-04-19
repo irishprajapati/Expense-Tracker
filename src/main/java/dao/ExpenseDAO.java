@@ -97,7 +97,7 @@ public class ExpenseDAO {
         try(Connection con = DBConnection.getConnection();
         PreparedStatement ps = con.prepareStatement(sql)){
             ps.setInt(1, id);
-            int rowsAffected = 0;
+            int rowsAffected = ps.executeUpdate();
             if(rowsAffected > 0){
                 System.out.println("Expense deleted successfully");
             }else{
