@@ -19,26 +19,6 @@ Built as a structured stepping stone toward Spring Boot. Every pattern here maps
 - PostgreSQL
 - No external libraries except the PostgreSQL driver
 
-## Project Structure
-expense-tracker/
-├── pom.xml
-└── src/
-└── main/
-└── java/
-└── com/
-└── expensetracker/
-├── db/
-│   └── DBConnection.java        → single getConnection() method
-├── model/
-│   ├── Expense.java             → plain model class
-│   └── Category.java            → enum (FOOD, TRANSPORT, RENT...)
-├── dao/
-│   └── ExpenseDAO.java          → all SQL operations
-├── validator/
-│   └── ExpenseValidator.java    → input validation layer
-└── app/
-└── App.java                 → menu loop, entry point
-
 ## Features
 - Add an expense with category selection
 - View all expenses
